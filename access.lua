@@ -23,6 +23,7 @@ local whitelist         = ngx.var.ngo_whitelist or ""
 local blacklist         = ngx.var.ngo_blacklist or ""
 local secure_cookies    = ngx.var.ngo_secure_cookies == "true" or false
 local http_only_cookies = ngx.var.ngo_http_only_cookies == "true" or false
+local same_site_cookies = ngx.var.ngo_same_site_cookies == "true" or false
 local set_user          = ngx.var.ngo_user or false
 local email_as_user     = ngx.var.ngo_email_as_user == "true" or false
 
@@ -226,6 +227,9 @@ local function authorize()
   end
   if http_only_cookies then
     cookie_tail = cookie_tail .. ";httponly"
+  end
+  if same_site_cookies then
+    cookie_tail = cookie_tail .. ";SameSite=Strict"
   end
 
   local email      = profile["email"]
