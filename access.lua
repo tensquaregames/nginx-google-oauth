@@ -223,10 +223,10 @@ local function authorize()
   local expires      = ngx.time() + token["expires_in"]
   local cookie_tail  = ";version=1;path=/;Max-Age=" .. extra_validity + token["expires_in"]
   if secure_cookies then
-    cookie_tail = cookie_tail .. ";secure"
+    cookie_tail = cookie_tail .. ";Secure"
   end
   if http_only_cookies then
-    cookie_tail = cookie_tail .. ";httponly"
+    cookie_tail = cookie_tail .. ";HttpOnly"
   end
   if same_site_cookies then
     cookie_tail = cookie_tail .. ";SameSite=Strict"
