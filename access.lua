@@ -229,7 +229,7 @@ local function authorize()
     cookie_tail = cookie_tail .. ";HttpOnly"
   end
   if same_site_cookies then
-    cookie_tail = cookie_tail .. ";SameSite=Strict"
+    cookie_tail = cookie_tail .. ";SameSite=Lax"
   end
 
   local email      = profile["email"]
